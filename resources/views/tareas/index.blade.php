@@ -8,6 +8,12 @@
 <body>
     <h1>Mis Tareas</h1>
 
+    <!-- Botón para cerrar sesión -->
+    <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+        @csrf
+        <button type="submit">Cerrar Sesión</button>
+    </form>
+
     <a href="{{ route('tareas.create') }}">Crear Nueva Tarea</a>
 
     <table>
@@ -29,6 +35,15 @@
                     <td>{{ ucfirst($tarea->estado) }}</td>
                     <td>
                         <a href="{{ route('tareas.edit', $tarea) }}">Editar</a>
+
+                        <!-- Botón para cambiar el estado de la tarea -->
+                        <form action="{{ route('tareas.cambiarEstado', $tarea) }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="submit">
+                                {{ $tarea->estado == 'pendiente' ? 'Marcar como completada' : 'Marcar como pendiente' }}
+                            </button>
+                        </form>
+
                         <form action="{{ route('tareas.destroy', $tarea) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

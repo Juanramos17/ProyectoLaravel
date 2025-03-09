@@ -13,25 +13,28 @@
         @method('PUT')
 
         <label for="titulo">Título:</label>
-        <input type="text" name="titulo" id="titulo" value="{{ $tarea->titulo }}" required>
-        <br>
+        <input type="text" name="titulo" value="{{ $tarea->titulo }}" required>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" id="descripcion">{{ $tarea->descripcion }}</textarea>
-        <br>
+        <textarea name="descripcion">{{ $tarea->descripcion }}</textarea>
 
         <label for="fecha_limite">Fecha Límite:</label>
-        <input type="date" name="fecha_limite" id="fecha_limite" value="{{ $tarea->fecha_limite }}">
-        <br>
+        <input type="date" name="fecha_limite" value="{{ $tarea->fecha_limite }}">
 
         <label for="estado">Estado:</label>
-        <select name="estado" id="estado" required>
+        <select name="estado">
             <option value="pendiente" {{ $tarea->estado == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
             <option value="completada" {{ $tarea->estado == 'completada' ? 'selected' : '' }}>Completada</option>
         </select>
-        <br>
 
-        <button type="submit">Actualizar</button>
+        <label for="prioridad">Prioridad:</label>
+        <select name="prioridad">
+            <option value="alta" {{ $tarea->prioridad == 'alta' ? 'selected' : '' }}>Alta</option>
+            <option value="media" {{ $tarea->prioridad == 'media' ? 'selected' : '' }}>Media</option>
+            <option value="baja" {{ $tarea->prioridad == 'baja' ? 'selected' : '' }}>Baja</option>
+        </select>
+
+        <button type="submit">Actualizar Tarea</button>
     </form>
 </body>
 </html>

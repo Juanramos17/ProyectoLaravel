@@ -9,13 +9,14 @@ class Tarea extends Model
 {
     use HasFactory;
 
-    // Definir los campos que pueden ser asignados masivamente
+    // Campos permitidos para asignación masiva
     protected $fillable = [
         'usuario_id',
         'titulo',
         'descripcion',
         'fecha_limite',
         'estado',
+        'prioridad',
     ];
 
     // Relación con el usuario (cada tarea pertenece a un usuario)

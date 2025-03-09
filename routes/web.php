@@ -4,26 +4,29 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TareaController;
 use Illuminate\Support\Facades\Route;
 
-// Ruta de inicio
+// Ruta principal
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Ruta de dashboard (solo accesible para usuarios autenticados y verificados)
+// Ruta de dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Rutas protegidas por autenticación (solo accesibles para usuarios logueados)
+// Rutas de tareas protegidas por autenticación
 Route::middleware('auth')->group(function () {
-    // Ruta para editar y actualizar el perfil del usuario
+    // Rutas para gestionar las tareas
+    Route::resource('tareas', TareaController::class);
+    
+    // Ruta para cambiar el estado de la tarea
+    Route::post('tareas/{tarea}/estado', [TareaController::class, 'cambiarEstado'])->name('tareas.cambiarEstado');
+    
+    // Rutas de perfil de usuario
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
-    // Rutas para las tareas (CRUD), protegidas por el middleware auth
-    Route::resource('tareas', TareaController::class);
 });
 
-// Cargar las rutas de autenticación (login, registro, etc.)
+// Autenticación
 require __DIR__.'/auth.php';

@@ -12,25 +12,28 @@
         @csrf
 
         <label for="titulo">Título:</label>
-        <input type="text" name="titulo" id="titulo" required>
-        <br>
+        <input type="text" name="titulo" required>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" id="descripcion"></textarea>
-        <br>
+        <textarea name="descripcion"></textarea>
 
         <label for="fecha_limite">Fecha Límite:</label>
-        <input type="date" name="fecha_limite" id="fecha_limite">
-        <br>
+        <input type="date" name="fecha_limite">
 
         <label for="estado">Estado:</label>
-        <select name="estado" id="estado" required>
+        <select name="estado">
             <option value="pendiente">Pendiente</option>
             <option value="completada">Completada</option>
         </select>
-        <br>
 
-        <button type="submit">Guardar</button>
+        <label for="prioridad">Prioridad:</label>
+        <select name="prioridad">
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+        </select>
+
+        <button type="submit">Guardar Tarea</button>
     </form>
 </body>
 </html>
