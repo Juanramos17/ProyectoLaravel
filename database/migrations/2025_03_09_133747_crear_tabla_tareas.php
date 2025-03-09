@@ -18,7 +18,7 @@ class CrearTablaTareas extends Migration
             $table->foreignId('usuario_id')->constrained('users')->onDelete('cascade'); // Relación con la tabla users
             $table->string('titulo');
             $table->text('descripcion')->nullable(); // Descripción opcional
-            $table->date('fecha_limite')->nullable(); // Fecha límite opcional
+            $table->dateTime('fecha_limite')->nullable(); // Fecha límite opcional
             $table->enum('estado', ['pendiente', 'completada'])->default('pendiente'); // Estado de la tarea
             $table->timestamps(); // created_at y updated_at
         });
